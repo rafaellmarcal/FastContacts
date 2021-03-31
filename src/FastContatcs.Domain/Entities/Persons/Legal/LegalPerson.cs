@@ -1,6 +1,7 @@
 ﻿using FastContatcs.Domain.Entities._Base;
 using FastContatcs.Domain.Entities.Addresses;
 using FastContatcs.Domain.Entities.Documents;
+using FastContatcs.Domain.Entities.Documents.Enums;
 using FluentValidation;
 using System;
 
@@ -32,7 +33,8 @@ namespace FastContatcs.Domain.Entities.Persons.Legal
                 .Length(2, 100).WithMessage("The field {PropertyName} must be between {MinLength} and {MaxLength} characters");
 
             RuleFor(f => f.Document)
-                .NotNull().WithMessage("The '{PropertyName}' must be provided");
+                .NotNull().WithMessage("The '{PropertyName}' must be provided")
+                .Must(f => f.Type == EDocumentType.CNPJ).WithMessage("Legal Person must be CNPJ document type");
 
             RuleFor(f => f.Address)
                 .NotNull().WithMessage("The '{PropertyName}' must be provided");

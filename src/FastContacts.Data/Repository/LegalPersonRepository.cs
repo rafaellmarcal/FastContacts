@@ -4,6 +4,7 @@ using FastContacts.Domain.Entities.Persons.Legal.Interfaces;
 using FastContatcs.Domain.Entities.Persons.Legal;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FastContacts.Data.Repository
@@ -13,7 +14,15 @@ namespace FastContacts.Data.Repository
         public LegalPersonRepository(FastContactsDbContext context)
             : base(context) { }
 
-        public async Task<LegalPerson> GetLegalPersonWithAddressAndDocument(Guid id)
+        public async Task<List<LegalPerson>> GetAll()
+        {
+            return await DbSet
+                .Include(p => p.Address)
+                .Include(p => p.Document)
+                .ToListAsync();
+        }
+
+        public new async Task<LegalPerson> GetById(Guid id)
         {
             return await DbSet
                 .Include(p => p.Address)

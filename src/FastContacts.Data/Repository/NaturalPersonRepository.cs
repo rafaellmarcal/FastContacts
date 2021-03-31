@@ -4,6 +4,7 @@ using FastContacts.Domain.Entities.Persons.Natural;
 using FastContacts.Domain.Entities.Persons.Natural.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FastContacts.Data.Repository
@@ -13,7 +14,15 @@ namespace FastContacts.Data.Repository
         public NaturalPersonRepository(FastContactsDbContext context)
             : base(context) { }
 
-        public async Task<NaturalPerson> GetNaturalPersonWithAddressAndDocument(Guid id)
+        public async Task<List<NaturalPerson>> GetAll()
+        {
+            return await DbSet
+                .Include(p => p.Address)
+                .Include(p => p.Document)
+                .ToListAsync();
+        }
+
+        public new async Task<NaturalPerson> GetById(Guid id)
         {
             return await DbSet
                 .Include(p => p.Address)

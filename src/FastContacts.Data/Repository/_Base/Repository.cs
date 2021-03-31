@@ -3,7 +3,6 @@ using FastContacts.Domain.Common.Repository;
 using FastContatcs.Domain.Entities._Base;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FastContacts.Data.Repository._Base
@@ -37,11 +36,6 @@ namespace FastContacts.Data.Repository._Base
         public virtual async Task<TEntity> GetById(Guid id)
         {
             return await DbSet.FindAsync(id);
-        }
-
-        public virtual async Task<List<TEntity>> GetAll()
-        {
-            return await DbSet.ToListAsync();
         }
 
         public void Dispose()

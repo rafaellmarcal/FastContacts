@@ -1,6 +1,5 @@
 ﻿using FastContatcs.Domain.Entities._Base;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FastContacts.Domain.Common.Repository
@@ -10,7 +9,7 @@ namespace FastContacts.Domain.Common.Repository
         void Add(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
+
         Task<TEntity> GetById(Guid id);
-        Task<List<TEntity>> GetAll();
     }
 }

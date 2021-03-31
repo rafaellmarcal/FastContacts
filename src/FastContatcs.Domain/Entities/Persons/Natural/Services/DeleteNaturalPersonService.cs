@@ -32,7 +32,7 @@ namespace FastContacts.Domain.Entities.Persons.Natural.Services
 
         public async Task Delete(Guid id)
         {
-            NaturalPerson person = await _naturalPersonRepository.GetNaturalPersonWithAddressAndDocument(id);
+            NaturalPerson person = await _naturalPersonRepository.GetById(id);
 
             _naturalPersonRepository.Delete(person);
             _addressRepository.Delete(person.Address);

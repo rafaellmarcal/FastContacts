@@ -2,6 +2,7 @@
 using FastContatcs.Domain.Entities._Base;
 using FastContatcs.Domain.Entities.Addresses;
 using FastContatcs.Domain.Entities.Documents;
+using FastContatcs.Domain.Entities.Documents.Enums;
 using FluentValidation;
 using System;
 
@@ -39,7 +40,8 @@ namespace FastContacts.Domain.Entities.Persons.Natural
                 .IsInEnum().WithMessage("Document type is invalid");
 
             RuleFor(f => f.Document)
-                .NotNull().WithMessage("The '{PropertyName}' must be provided");
+                .NotNull().WithMessage("The '{PropertyName}' must be provided")
+                .Must(f => f.Type == EDocumentType.CPF).WithMessage("Natural Person must be CPF document type");
 
             RuleFor(f => f.Address)
                 .NotNull().WithMessage("The '{PropertyName}' must be provided");

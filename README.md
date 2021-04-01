@@ -20,13 +20,13 @@ O projeto Fast Contacts tem como objetivo o gerenciamento completo da lista de c
 7. É permitido o cadastro de mais de um contato com o mesmo número de documento.
 
 ### Iniciar Projeto - API:
-1. Após realizar o clone do projeto, verificar se a porta *:5000 não está sendo utilizada na máquina em que o projeto foi baixado.
+1. Após realizar o clone do projeto, verificar se a porta '*:5000' não está sendo utilizada na máquina em que o projeto foi baixado.
 Caso a porta não esteja disponível, será necessário realizar a troca para uma porta disponível no arquivo launchSettings.json dentro da pasta 'Properties' no projeto.
 
 2. Para a persistência dos dados, ficará a critério a utilização de um banco de dados SQL Server instalado na máquina ou
 do banco de dados em memória já com a configuração disponível no projeto sendo somente necessário descomentar a opção escolhida na classe Startup.cs do projeto.
-Caso opte por rodar a aplicação com banco de dados SQL Server instalado na máquina, será necessário rodar a migration inicial criada.
-No Visual Studio ir até 'Tools' => 'NuGet Package Manager' => 'Package Manager Console' e rodar o comando 'Update-Database'.
+Caso opte por rodar a aplicação com banco de dados SQL Server instalado na máquina, será necessário rodar a migration inicial criada,
+mas antes é necessário alterar a propriedade 'Server' da 'DefaultConnection' na seção 'ConnectionStrings' no arquivo appsettings.Development.json apontando para o ServerName configurado localmente. Feito isso, no Visual Studio ir até 'Tools' => 'NuGet Package Manager' => 'Package Manager Console', selecionar o projeto 'FastContacts.Data' como 'Default Project' e rodar o comando 'Update-Database'.
 
 3. Conferir se o projeto 'FastContacts.Api' está selecionado para ser inicializado.
 Clicar com o botão direito no projeto 'FastContacts.Api' e selecionar a opção 'Set as Startup Project'.

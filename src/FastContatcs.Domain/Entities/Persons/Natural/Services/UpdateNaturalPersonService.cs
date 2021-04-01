@@ -32,7 +32,7 @@ namespace FastContacts.Domain.Entities.Persons.Natural.Services
 
         public async Task Update(NaturalPersonDto dto)
         {
-            NaturalPerson person = new NaturalPerson(dto.Name, dto.Birthday, dto.Gender);
+            NaturalPerson person = await _naturalPersonRepository.GetById(dto.Id);
 
             UpdateNaturalPerson(dto, person);
 
